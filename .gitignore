@@ -261,5 +261,3 @@ poetry.toml
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-
-apps/data/
