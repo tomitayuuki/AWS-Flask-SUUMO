@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>都内の賃貸高い…高くない？</title>
+    </head>
+
+    <body>
+        <h1>結果</h1>
+        <h2>相場：{{ pred_rent }}万円</h2>
+
+        <ul>
+            {% for key, item in predict_data.items() %}
+            <li>{{ eng_jap[key] }}：{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="/predict">もう一度</a><br>
+        <a href="/recommend">物件を探す</a>
+
+    </body>
+</html>

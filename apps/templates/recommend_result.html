@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>こちらはいかがでしょうか？</title>
+    </head>
+    <body>
+        <h1>こちらの物件はいかがでしょうか？</h1>
+
+        <h3>おススメの物件はこちらです。</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>家賃</th>
+                    <th>区</th>
+                    <th>駅徒歩</th>
+                    <th>間取り</th>
+                    <th>総階数</th>
+                    <th>階</th>
+                    <th>築年数</th>
+                    <th>類似度</th>
+                    <th>url</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index,rent in recomm_rent.iterrows() %}
+                <tr>
+                    <td>{{rent['rent']}}万円</td>
+                    <td>{{rent['ward']}}</td>
+                    <td>{{rent['time_to_station']}}分</td>
+                    <td>{{rent['floor_plan']}}</td>
+                    <td>{{rent['top_floor']}}階</td>
+                    <td>{{rent['rent_floor']}}階</td>
+                    <td>{{rent['age']}}年</td>
+                    <td>{{rent['similarity']}}</td>
+                    <td><a href="{{rent['url']}}">SUUMOで見る</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>お探し物件の条件</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>家賃</th>
+                    <th>区</th>
+                    <th>駅徒歩</th>
+                    <th>間取り</th>
+                    <th>総階数</th>
+                    <th>階</th>
+                    <th>築年数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ideal_rent['rent']}}万円</td>
+                    <td>{{ideal_rent['ward']}}</td>
+                    <td>{{ideal_rent['time_to_station']}}分</td>
+                    <td>{{ideal_rent['floor_plan']}}</td>
+                    <td>{{ideal_rent['top_floor']}}階</td>
+                    <td>{{ideal_rent['rent_floor']}}階</td>
+                    <td>{{ideal_rent['age']}}年</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <a href="/recommend">もう一度</a><br>
+        <a href="/predict">物件相場を調べる</a>
+    </body>
+</html>

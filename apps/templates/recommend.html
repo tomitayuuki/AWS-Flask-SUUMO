@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>レコメンド</title>
+    </head>
+    <body>
+        <h1>ご注文はこちらの賃貸ですか？</h1>
+
+        <p>物件の条件を入れるとそれに近い物件を探してくれます。</p>
+        <p>大して精度は良くないのでお遊び程度に使ってみてください。</p>
+        <br>
+
+        <form action="/recommend_result" method="POST">
+            <p>家賃：<input type="number" name="rent" value="10.0" step="0.1" placeholder="10.0" required>万円</p>
+            <p>区：
+                <select name="ward">
+                    {% for ward in land_price["ward"] %}
+                    <option value="{{ ward }}">{{ ward }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>駅徒歩：<input type="number" name="time_to_station"  value=10 placeholder="10" required>分</p>
+            <p>間取り：
+                <select name="floor_plan">
+                    {% for floor_plan in transform_floor_plan_area["floor_plan"] %}
+                    <option value="{{ floor_plan }}">{{ floor_plan }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>総階数：<input type="number" name="top_floor" value=3 placeholder="3" required>階</p>
+            <p>階：<input type="number" name="rent_floor" value=2 placeholder="2" required>階</p>
+            <p>築年数<input type="number" name="age" value=10 placeholder="10" required>年</p>
+            <input type="submit" value="探す">
+        </form>
+        <br>
+        <a href="/predict">物件相場を調べる</a>
+    </body>
+</html>

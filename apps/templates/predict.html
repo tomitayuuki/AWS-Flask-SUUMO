@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>うわっ…理想の賃貸、相場高すぎ…？</title>
+    </head>
+
+    <body>
+        <h1>うわっ…理想の賃貸、相場高すぎ…？</h1>
+
+        <p>賃貸情報を入れると相場を教えてくれます。</p>
+        <p>現実に存在しない物件でも一応予測出来ます。</p>
+        <br>
+
+        <form action="/predict_result" method="POST">
+            <p>最寄駅からの距離：<input type="number" name="nearest_station" value=0 required>m</p>
+            <p>築年数：<input type="number" name="age" value=0 required>年</p>
+            <p>総階数：<input type="number" name="top_floor" value=1 required>階</p>
+            <p>面積：<input type="number" name="area" value=20 required>m2</p>
+            <p>カテゴリ：
+                <select name="category">
+                    {% for index, row in table_category.iterrows() %}
+                    <option value="{{ row['id'] }}">{{ row['category'] }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>市区町村：
+                <select name="ward">
+                    {% for index, row in table_ward.iterrows() %}
+                    <option value="{{ row['id'] }}">{{ row['ward'] }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>路線：
+                <select name="line">
+                    {% for index, row in table_line.iterrows() %}
+                    <option value="{{ row['id'] }}">{{ row['line'] }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>駅：
+                <select name="station">
+                    {% for index, row in table_station.iterrows() %}
+                    <option value="{{ row['id'] }}">{{ row['station'] }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>間取り：
+                <select name="floor_plan">
+                    {% for index, row in table_floor_plan.iterrows() %}
+                    <option value="{{ row['id'] }}">{{ row['floor_plan'] }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <input type="submit" value="相場を見る">
+        </form>
+        <br>
+        <a href="/recommend">物件を探す</a>
+    </body>
+</html>
